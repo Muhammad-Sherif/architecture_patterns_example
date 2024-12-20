@@ -41,9 +41,8 @@ public class AuthenticateHandler {
             if(account == null) {
                 boolean hasInvitation = invitationRepo.hasInvitation(mobileNumber).join();
                 boolean isAdmin = accountRepo.isAdmin(mobileNumber).join();
-                account = accountCreationService.
-                        createNewAccount(mobileNumber,command.deviceType(),command.deviceId(),
-                                         hasInvitation,isAdmin);
+                account = accountCreationService.createNewAccount(mobileNumber,command.deviceType(),command.deviceId(),
+                                                                  hasInvitation,isAdmin);
             }
 
 
