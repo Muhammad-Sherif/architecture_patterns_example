@@ -1,8 +1,5 @@
 package com.charity_hub.domain.models.account;
 
-import com.charity_hub.domain.helper.CreateOperation;
-import com.charity_hub.domain.contracts.IAccountRepo;
-import com.charity_hub.domain.contracts.IInvitationRepo;
 import com.charity_hub.domain.contracts.IJWTGenerator;
 import com.charity_hub.domain.models.device.Device;
 import lombok.Getter;
@@ -45,17 +42,9 @@ public class Account {
         this.joinedDate = joinedDate != null ? joinedDate : new Date();
     }
 
-    public static CreateOperation<Account> newAccount(IAccountRepo accountRepo, IInvitationRepo invitationRepo,
-                                                      String mobileNumber, String aDeviceType, String aDeviceId) {
-
-        boolean isAdmin = accountRepo.isAdmin(mobileNumber).join();
-        boolean hasNoInvitations = !invitationRepo.hasInvitation(mobileNumber).join();
-
-        if(assertIsAdminOrInvited(mobileNumber, isAdmin, hasNoInvitations)) {
-            return new CreateOperation<Account>(false,null);
-        }
-
+    public static Account newAccount(String mobileNumber, boolean isAdmin, String aDeviceType, String aDeviceId) {
         Device device = Device.of(aDeviceId, aDeviceType);
+
         Account account = new Account(
                 AccountId.generate(),
                 MobileNumber.of(mobileNumber),
@@ -67,12 +56,9 @@ public class Account {
                 new Date()
         );
 
-        return new CreateOperation<Account>(true,account);
+        return account;
     }
 
-    private static boolean assertIsAdminOrInvited(String mobileNumber, boolean isAdmin, boolean hasNoInvitations) {
-        return !isAdmin && hasNoInvitations;
-    }
     public Tokens authenticate(IJWTGenerator jwtGenerator, String deviceId, String aDeviceType) {
         var usedDevice = usedDevice(deviceId, aDeviceType);
 
