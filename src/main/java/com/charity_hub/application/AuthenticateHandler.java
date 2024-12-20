@@ -2,7 +2,7 @@ package com.charity_hub.application;
 
 import com.charity_hub.domain.contracts.*;
 import com.charity_hub.domain.models.account.Tokens;
-import com.charity_hub.services.AccountCreationService;
+import com.charity_hub.domain.services.AccountCreationService;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.CompletableFuture;

@@ -1,4 +1,4 @@
-package com.charity_hub.services;
+package com.charity_hub.domain.services;
 
 import com.charity_hub.domain.contracts.ILogger;
 import com.charity_hub.domain.exceptions.AppException;
