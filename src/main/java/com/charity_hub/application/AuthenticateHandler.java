@@ -37,6 +37,10 @@ public class AuthenticateHandler {
 
 
             var account = accountRepo.getByMobileNumber(mobileNumber).join();
+            // we can remove this if condition by sending all params
+            // (account, mobileNumber, DeviceType, hasInvitation, isAdmin)
+            // to createNewAccount function but here we wil do extra to calls to db even we may not need it
+
 
             if(account == null) {
                 boolean hasInvitation = invitationRepo.hasInvitation(mobileNumber).join();
