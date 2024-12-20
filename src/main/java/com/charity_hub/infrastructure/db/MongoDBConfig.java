@@ -20,19 +20,19 @@ import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 @Component
 public class MongoDBConfig {
 
-    @Value("${spring.data.mongodb.host}")
+    @Value("${spring.createdData.mongodb.host}")
     private String host;
 
-    @Value("${spring.data.mongodb.port}")
+    @Value("${spring.createdData.mongodb.port}")
     private int port;
 
-    @Value("${spring.data.mongodb.database}")
+    @Value("${spring.createdData.mongodb.database}")
     private String databaseName;
 
-    @Value("${spring.data.mongodb.password}")
+    @Value("${spring.createdData.mongodb.password}")
     private String password;
 
-    @Value("${spring.data.mongodb.username}")
+    @Value("${spring.createdData.mongodb.username}")
     private String username;
 
     @Bean
